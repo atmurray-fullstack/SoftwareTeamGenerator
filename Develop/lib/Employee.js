@@ -26,12 +26,5 @@ class Employee {
     }
 
 }
-// const e = new Employee("andrew",100,"atmurray@pary.com")
-// console.log(typeof e)
-// console.log(e.name)
-// console.log(e.id)
-// console.log(e.email)
-// console.log(e.getName())
-// console.log(e.getId())
-// console.log(e.getEmail())
+
 module.exports = Employee;
