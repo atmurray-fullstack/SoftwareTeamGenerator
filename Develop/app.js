@@ -25,10 +25,10 @@ function promptUser() {
 
 
 promptUser()
-.then(function(ans){
+.then(async function(ans){
     if (ans.role === "Manager"&&managerArr.length===0){
         console.log('here');
-        inquirer.prompt([
+       await inquirer.prompt([
             {
                 type:"input",
                 message:"What is the persons name?",
@@ -49,12 +49,18 @@ promptUser()
                 message:"What is the person's office number?",
                 name:"officeNumber",
             },
-        ]).then(function(ans){
-            const {name, id, officeNumber, email} =ans
+        ]).then(async function(ans){
+            const {name, id, officeNumber, email} = await ans
             let manager=new Manager(name, id, email, officeNumber);
+            managerArr.push(manager);
             console.log(manager);
+            // console.log(managerArr);
+
         })
+    }else if (ans.role==="Engineer"){
+        
     }
+    console.log(managerArr);
 });
 
 
