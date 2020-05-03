@@ -7,8 +7,8 @@ const fs = require("fs");
 const OUTPUT_DIR = path.resolve(__dirname, "output")
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 // ​const render = require("./lib/htmlRenderer");
-const managerArr=[];
-const engineerArr=[];
+const managerArr = [];
+const engineerArr = [];
 const internArr = [];
 
 function promptUser() {
@@ -25,43 +25,101 @@ function promptUser() {
 
 
 promptUser()
-.then(async function(ans){
-    if (ans.role === "Manager"&&managerArr.length===0){
-        console.log('here');
-       await inquirer.prompt([
-            {
-                type:"input",
-                message:"What is the persons name?",
-                name:"name"
-            },
-            {
-                type:"input",
-                message:"What is the persons id",
-                name:"id"
-            },
-            {
-                type:"input",
-                message:"What is the person's email?",
-                name:"email",
-            },
-            {
-                type:"input",
-                message:"What is the person's office number?",
-                name:"officeNumber",
-            },
-        ]).then(async function(ans){
-            const {name, id, officeNumber, email} = await ans
-            let manager=new Manager(name, id, email, officeNumber);
-            managerArr.push(manager);
-            console.log(manager);
-            // console.log(managerArr);
+    .then(async function (ans) {
+        if (ans.role === "Manager" && managerArr.length === 0) {
+            console.log('here M');
+            await inquirer.prompt([
+                {
+                    type: "input",
+                    message: "What is the persons name?",
+                    name: "name"
+                },
+                {
+                    type: "input",
+                    message: "What is the persons id",
+                    name: "id"
+                },
+                {
+                    type: "input",
+                    message: "What is the person's email?",
+                    name: "email",
+                },
+                {
+                    type: "input",
+                    message: "What is the person's office number?",
+                    name: "officeNumber",
+                },
+            ]).then(async function (ans) {
+                const { name, id, officeNumber, email } = await ans
+                let manager = new Manager(name, id, email, officeNumber);
+                managerArr.push(manager);
+                console.log(manager);
+                // console.log(managerArr);
 
-        })
-    }else if (ans.role==="Engineer"){
-        
-    }
-    console.log(managerArr);
-});
+            })
+        } else if (ans.role === "Engineer") {
+            await inquirer.prompt([
+                {
+                    type: "input",
+                    message: "What is the persons name?",
+                    name: "name"
+                },
+                {
+                    type: "input",
+                    message: "What is the persons id",
+                    name: "id"
+                },
+                {
+                    type: "input",
+                    message: "What is the person's email?",
+                    name: "email",
+                },
+                {
+                    type: "input",
+                    message: "What is the person's Github username?",
+                    name: "github",
+                },
+            ]).then(async function (ans) {
+                const { name, id, github, email } = await ans
+                let engineer = new Engineer(name, id, email, github);
+                engineerArr.push(engineer);
+                console.log(engineer);
+                // console.log(managerArr);
+
+            })
+        } else if (ans.role === "Intern") {
+            await inquirer.prompt([
+                {
+                    type: "input",
+                    message: "What is the persons name?",
+                    name: "name"
+                },
+                {
+                    type: "input",
+                    message: "What is the persons id",
+                    name: "id"
+                },
+                {
+                    type: "input",
+                    message: "What is the person's email?",
+                    name: "email",
+                },
+                {
+                    type: "input",
+                    message: "What is the person's school?",
+                    name: "school",
+                },
+            ]).then(async function (ans) {
+                const { name, id, school, email } = await ans
+                let intern = new Intern(name, id, email, school);
+                internArr.push(intern);
+                console.log(intern);
+                // console.log(managerArr);
+
+            })
+        }
+        console.log(managerArr, engineerArr, internArr);
+    });
 
 
 
