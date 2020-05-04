@@ -11,6 +11,19 @@ const managerArr = [];
 const engineerArr = [];
 const internArr = [];
 
+
+function startTeam() {
+    return inquirer.prompt([
+        {
+            type: "confirm",
+            message: "Are you ready to start the team?",
+            name: "start",
+
+        },
+    ])
+}
+
+
 function promptUser() {
     return inquirer.prompt([
         {
@@ -22,103 +35,150 @@ function promptUser() {
     ])
 }
 
+// let moreEmployees =true;
+
+// await inquirer.prompt([
+//     {
+//         type:"confirm",
+//         name:"moreEmployees",
+//         message:"Add another person?",
+//     },
+// ]).then( function(ans){
+//     if (ans.moreEmployees==false){
+//         return moreEmployees=false;
+//     }
+// })
 
 
-promptUser()
-    .then(async function (ans) {
-        if (ans.role === "Manager" && managerArr.length === 0) {
-            console.log('here M');
-            await inquirer.prompt([
-                {
-                    type: "input",
-                    message: "What is the persons name?",
-                    name: "name"
-                },
-                {
-                    type: "input",
-                    message: "What is the persons id",
-                    name: "id"
-                },
-                {
-                    type: "input",
-                    message: "What is the person's email?",
-                    name: "email",
-                },
-                {
-                    type: "input",
-                    message: "What is the person's office number?",
-                    name: "officeNumber",
-                },
-            ]).then(async function (ans) {
-                const { name, id, officeNumber, email } = await ans
-                let manager = new Manager(name, id, email, officeNumber);
-                managerArr.push(manager);
-                console.log(manager);
-                // console.log(managerArr);
+startTeam()
+    .then(async function (reply) {
+        console.log(reply.start)
 
-            })
-        } else if (ans.role === "Engineer") {
-            await inquirer.prompt([
-                {
-                    type: "input",
-                    message: "What is the persons name?",
-                    name: "name"
-                },
-                {
-                    type: "input",
-                    message: "What is the persons id",
-                    name: "id"
-                },
-                {
-                    type: "input",
-                    message: "What is the person's email?",
-                    name: "email",
-                },
-                {
-                    type: "input",
-                    message: "What is the person's Github username?",
-                    name: "github",
-                },
-            ]).then(async function (ans) {
-                const { name, id, github, email } = await ans
-                let engineer = new Engineer(name, id, email, github);
-                engineerArr.push(engineer);
-                console.log(engineer);
-                // console.log(managerArr);
+        if (reply.start === true) {
+            let moreEmployees = true;
 
-            })
-        } else if (ans.role === "Intern") {
-            await inquirer.prompt([
-                {
-                    type: "input",
-                    message: "What is the persons name?",
-                    name: "name"
-                },
-                {
-                    type: "input",
-                    message: "What is the persons id",
-                    name: "id"
-                },
-                {
-                    type: "input",
-                    message: "What is the person's email?",
-                    name: "email",
-                },
-                {
-                    type: "input",
-                    message: "What is the person's school?",
-                    name: "school",
-                },
-            ]).then(async function (ans) {
-                const { name, id, school, email } = await ans
-                let intern = new Intern(name, id, email, school);
-                internArr.push(intern);
-                console.log(intern);
-                // console.log(managerArr);
+            while (moreEmployees === true) {
 
-            })
+                await promptUser()
+                    .then(async function (ans) {
+                        if (ans.role === "Manager" && managerArr.length === 0) {
+                            console.log('here M');
+                            await inquirer.prompt([
+                                {
+                                    type: "input",
+                                    message: "What is the persons name?",
+                                    name: "name"
+                                },
+                                {
+                                    type: "input",
+                                    message: "What is the persons id",
+                                    name: "id"
+                                },
+                                {
+                                    type: "input",
+                                    message: "What is the person's email?",
+                                    name: "email",
+                                },
+                                {
+                                    type: "input",
+                                    message: "What is the person's office number?",
+                                    name: "officeNumber",
+                                },
+                            ]).then(async function (ans) {
+                                const { name, id, officeNumber, email } = await ans
+                                let manager = new Manager(name, id, email, officeNumber);
+                                managerArr.push(manager);
+                                console.log(manager);
+                                // console.log(managerArr);
+
+                            })
+                        } else if (ans.role === "Engineer") {
+                            await inquirer.prompt([
+                                {
+                                    type: "input",
+                                    message: "What is the persons name?",
+                                    name: "name"
+                                },
+                                {
+                                    type: "input",
+                                    message: "What is the persons id",
+                                    name: "id"
+                                },
+                                {
+                                    type: "input",
+                                    message: "What is the person's email?",
+                                    name: "email",
+                                },
+                                {
+                                    type: "input",
+                                    message: "What is the person's Github username?",
+                                    name: "github",
+                                },
+                            ]).then(async function (ans) {
+                                const { name, id, github, email } = await ans
+                                let engineer = new Engineer(name, id, email, github);
+                                engineerArr.push(engineer);
+                                console.log(engineer);
+                                // console.log(managerArr);
+
+                            })
+                        } else if (ans.role === "Intern") {
+                            await inquirer.prompt([
+                                {
+                                    type: "input",
+                                    message: "What is the persons name?",
+                                    name: "name"
+                                },
+                                {
+                                    type: "input",
+                                    message: "What is the persons id",
+                                    name: "id"
+                                },
+                                {
+                                    type: "input",
+                                    message: "What is the person's email?",
+                                    name: "email",
+                                },
+                                {
+                                    type: "input",
+                                    message: "What is the person's school?",
+                                    name: "school",
+                                },
+                            ]).then(async function (ans) {
+                                const { name, id, school, email } = await ans
+                                let intern = new Intern(name, id, email, school);
+                                internArr.push(intern);
+                                console.log(intern);
+                                // console.log(managerArr);
+
+                            })
+                        }
+                        console.log(managerArr, engineerArr, internArr);
+
+
+
+                    });
+
+
+                await inquirer.prompt([
+                    {
+                        type: "confirm",
+                        name: "moreEmployees",
+                        message: "Add another person?",
+                    },
+                ]).then(function (ans) {
+                    if (ans.moreEmployees == false) {
+                        return moreEmployees= false;
+                    }
+                })
+
+
+
+            }
+        } else {
+            return
         }
-        console.log(managerArr, engineerArr, internArr);
+
     });
 
 
