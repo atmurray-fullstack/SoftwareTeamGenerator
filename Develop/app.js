@@ -167,12 +167,10 @@ startTeam()
         console.log(render(allArr));
         let html = render(allArr);
 
-        let val = fs.exists(OUTPUT_DIR, function (val) {
-            console.log(val)
-            return val
-        });
-
-        if (val===false) {
+        let val = fs.existsSync(OUTPUT_DIR)
+        
+        console.log(val+"________________________");
+        if (val === false) {
             fs.mkdir(OUTPUT_DIR, (err) => {
                 if (err) {
                     console.log(err);
@@ -183,13 +181,14 @@ startTeam()
                     console.log(err);
                 }
             });
-        } else {
-            fs.writeFile(outputPath, html,  (err) => {
+        } else if (val===true) {
+            fs.writeFile(outputPath, html, (err) => {
                 if (err) {
                     console.log(err);
                 }
             });
         }
+
 
 
     });
