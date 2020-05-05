@@ -4,9 +4,11 @@ const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
+var validator = require("email-validator");
 const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 const render = require("./lib/htmlRenderer");
+
 const managerArr = [];
 const engineerArr = [];
 const internArr = [];
@@ -163,13 +165,14 @@ startTeam()
         }
 
         let allArr = [...managerArr, ...engineerArr, ...internArr];
+
         console.log(allArr)
-        console.log(render(allArr));
+        // console.log(render(allArr));
         let html = render(allArr);
 
         let val = fs.existsSync(OUTPUT_DIR)
         
-        console.log(val+"________________________");
+        console.log(val);
         if (val === false) {
             fs.mkdir(OUTPUT_DIR, (err) => {
                 if (err) {
