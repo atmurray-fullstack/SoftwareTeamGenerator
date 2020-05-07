@@ -37,7 +37,9 @@ Inquirer
  GIF by screencastify
 
 ## License
-[![License: Unlicense](https://img.shields.io/badge/license-Unlicense-blue.svg)](http://unlicense.org/)<br>unlicense
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+<br>The MIT License
 
 ## Contributor Guidelines
 Just initiate a pull request and follow all Github community guidelines please.
